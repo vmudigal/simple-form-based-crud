@@ -1,0 +1,89 @@
+# GLOBAL CONFIGURATION
+
+environment: localhost
+
+spring:
+  resources.cache.cachecontrol:
+    max-age: 31536000
+    must-revalidate: true
+  application.name: knowledge
+  velocity.enabled: false
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  jpa:
+    hibernate:
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+
+info.component: Talent Management
+info.app:
+  name: Talent Management
+  description: Talent Management Platform.
+  version: 1.0.0
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+
+config.stopBubbling: true
+lombok.addLombokGeneratedAnnotation: true
+
+jackson:
+  serialization:
+    INDENT_OUTPUT: true
+
+management:
+  health:
+    db.enabled: true
+    defaults.enabled: true
+    mail.enabled: true
+  info:
+    build.enabled: true 
+    defaults.enabled: true 
+    env.enabled: true
+    git.enabled: true
+    git.mode: simple
+  endpoint:
+    health.show-details: "ALWAYS"
+    info.enabled: true
+  endpoints.web:
+    base-path: /manage
+    exposure.include: '*'
+
+logging:
+  file: target/talent-management-application.log
+
+---
+
+server:
+  contextPath: /
+  port: 8082
+
+spring:
+  profiles: default
+  datasource:
+    url: jdbc:mysql://localhost:3306/talent_management?createDatabaseIfNotExist=true&useUnicode=yes&characterEncoding=UTF-8
+    username: root
+    password: Viju!123
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+jira:
+  url:
+  username:
+  password:
+
+logging:
+  level:
+    root: ERROR
+    com.mudigal.talentmanagement: DEBUG

@@ -1,0 +1,81 @@
+<div class="container">
+  <mat-card>
+    <h6 style="padding-bottom: 45px; color: grey;">Register here to begin the pre-onboarding process</h6>
+    <form [formGroup]="candidateForm">
+      <div class="row">
+        <div class="col-sm-12 col-md-3">
+          <mat-form-field>
+            <input matInput placeholder="First Name" formControlName="firstname" required>
+            <mat-error>{{getFirstnameErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <mat-form-field>
+            <input matInput placeholder="Surname" formControlName="surname" required>
+            <mat-error>{{getSurnameErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Start Date" formControlName="startdate" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error>{{getStartDateErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <mat-form-field>
+            <input matInput placeholder="Notice Period" formControlName="noticeperiod" required>
+            <mat-error>{{getNoticeperiodErrorMessage()}}</mat-error>
+            
+          </mat-form-field>
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <mat-form-field>
+            <input matInput placeholder="Email Address" formControlName="email" required>
+            <mat-error>{{getEmailErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <mat-form-field>
+            <input matInput placeholder="Contact Number" formControlName="contactnumber" required>
+            <mat-error>{{getContactNumberMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <mat-form-field>
+            <mat-label>Laptop Preference</mat-label>
+            <mat-select formControlName="laptoppreference" required>
+              <mat-option *ngFor="let laptopPreferenceOption of laptopPreferenceOptions"
+                [value]="laptopPreferenceOption.value">
+                {{laptopPreferenceOption.viewValue}}
+              </mat-option>
+            </mat-select>
+            <mat-error>{{getLaptopPreferenceErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-12 col-md-5">
+          <mat-form-field>
+            <textarea matInput matTextareaAutosize matAutosizeMinRows=6 matAutosizeMaxRows=6 placeholder="Address"
+              formControlName="address" required></textarea>
+            <mat-error>{{getAddressErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-12">
+            <div class="float-right col-sm-12 col-md-3">
+          <button class="col-sm-12 col-md-8 col-lg-6" mat-raised-button color="primary"
+            (click)="saveCandidateForm()">Register</button>
+          <!-- <button type="button" class="btn btn-danger" style="margin-right: .25em; width: 100px" >clear</button>
+              <button type="button" class="btn btn-success" style="width: 100px"
+                >submit</button> -->
+            </div>
+          <div class="float-right col-sm-12 col-md-3">
+          <button class="float-right col-sm-12 col-md-8 col-lg-6" style="margin-right:25px;" mat-raised-button
+            (click)="clearAction()" style="padding-right: 20px;">Clear</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>
